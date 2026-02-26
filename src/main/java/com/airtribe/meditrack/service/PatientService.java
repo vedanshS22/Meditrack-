@@ -13,6 +13,8 @@ import java.util.stream.Collectors;
 
 public class PatientService implements Searchable<Patient> {
 
+    // SOLID (Single Responsibility): coordinates patient-related operations only,
+    // delegating persistence to the generic DataStore abstraction.
     private final DataStore<Patient> store;
     private final IdGenerator idGenerator = IdGenerator.getInstance();
 

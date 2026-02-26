@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
 
 public class DoctorService implements Searchable<Doctor> {
 
+    // SOLID (Single Responsibility): encapsulates all doctor-specific logic,
+    // while relying on the injected DataStore abstraction for persistence.
     private final DataStore<Doctor> store;
     private final IdGenerator idGenerator = IdGenerator.getInstance();
 

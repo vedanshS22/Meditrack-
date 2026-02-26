@@ -6,6 +6,11 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * SOLID (Single Responsibility + Dependency Inversion):
+ * generic in-memory repository abstraction so services do not depend
+ * directly on concrete collection implementations.
+ */
 public class DataStore<T> {
 
     private final Map<String, T> store = new ConcurrentHashMap<>();

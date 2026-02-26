@@ -56,8 +56,9 @@ public class AppointmentService {
         Appointment appointment = getAppointmentById(appointmentId)
                 .orElseThrow(() -> new AppointmentNotFoundException("Appointment not found: " + appointmentId));
         String billId = idGenerator.nextBillId();
-        double baseAmount = appointment.getDoctor().getConsultationFee();
-        return new Bill(billId, appointment, baseAmount);
+        // Design pattern (Factory): delegates to BillFactory, which in turn
+        // selects the appropriate BillingStrategy for this bill.
+        return BillFactory.standardBill(billId, appointment);
     }
 
     public Map<Doctor, Long> getAppointmentsPerDoctor() {

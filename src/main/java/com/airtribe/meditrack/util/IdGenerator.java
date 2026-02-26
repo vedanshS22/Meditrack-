@@ -2,6 +2,10 @@ package com.airtribe.meditrack.util;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Design pattern (Singleton) + concurrency:
+ * a single, thread-safe ID generator shared across the application.
+ */
 public final class IdGenerator {
 
     private static final IdGenerator INSTANCE = new IdGenerator();
@@ -10,6 +14,11 @@ public final class IdGenerator {
     private final AtomicInteger patientCounter = new AtomicInteger(1);
     private final AtomicInteger appointmentCounter = new AtomicInteger(1);
     private final AtomicInteger billCounter = new AtomicInteger(1);
+
+    static {
+        // Static initialization block demonstrates JVM class initialization and one-time setup.
+        System.out.println("IdGenerator initialized.");
+    }
 
     private IdGenerator() {
     }
