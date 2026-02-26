@@ -13,9 +13,6 @@ import com.airtribe.meditrack.util.DataStore;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Entry point for the MediTrack console application.
- */
 public class Main {
 
     public static void main(String[] args) {
@@ -47,9 +44,10 @@ public class Main {
             printMenu();
             String choice = scanner.nextLine();
             switch (choice) {
-                case "1" -> patientService.handlePatientMenu(scanner);
-                case "2" -> doctorService.handleDoctorMenu(scanner);
-                case "3" -> appointmentService.handleAppointmentMenu(scanner);
+                // Menu-driven UI entry points to CRUD/search flows and billing.
+                case "1" -> patientService.handlePatientMenu(scanner);          // Patients: CRUD + search
+                case "2" -> doctorService.handleDoctorMenu(scanner);            // Doctors: CRUD + search/analytics
+                case "3" -> appointmentService.handleAppointmentMenu(scanner);  // Appointments: create/view/cancel + billing
                 case "4" -> aiHelper.handleAiMenu(scanner, doctorService, appointmentService, patientService);
                 case "0" -> running = false;
                 default -> System.out.println("Invalid choice. Please try again.");

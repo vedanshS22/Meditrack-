@@ -24,6 +24,7 @@ public class DoctorService implements Searchable<Doctor> {
         this.store = store;
     }
 
+    // CRUD: create operation for Doctor (used by UI and CSV loader)
     public Doctor createDoctor(String name, int age, String phone,
                                Specialization specialization, double fee) {
         String id = idGenerator.nextDoctorId();
@@ -45,6 +46,7 @@ public class DoctorService implements Searchable<Doctor> {
         return store.findById(id);
     }
 
+    // CRUD: read-all operation for Doctor
     public List<Doctor> getAllDoctors() {
         return store.findAll();
     }
@@ -60,6 +62,7 @@ public class DoctorService implements Searchable<Doctor> {
                 .collect(Collectors.summarizingDouble(Doctor::getConsultationFee));
     }
 
+    // CRUD: delete operation for Doctor
     public boolean deleteDoctor(String id) {
         return store.delete(id);
     }
