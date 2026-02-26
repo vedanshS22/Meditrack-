@@ -26,6 +26,7 @@ public class AppointmentService {
         this.patientService = patientService;
     }
 
+    // Appointments: create operation (CONFIRMED by default)
     public Appointment createAppointment(Patient patient, Doctor doctor, LocalDateTime dateTime) {
         String id = idGenerator.nextAppointmentId();
         return createAppointmentWithId(id, patient, doctor, dateTime, AppointmentStatus.CONFIRMED);
@@ -42,10 +43,12 @@ public class AppointmentService {
         return store.findById(id);
     }
 
+    // Appointments: read-all operation
     public List<Appointment> getAllAppointments() {
         return store.findAll();
     }
 
+    // Appointments: cancel operation using AppointmentStatus enum
     public void cancelAppointment(String id) {
         Appointment appointment = getAppointmentById(id)
                 .orElseThrow(() -> new AppointmentNotFoundException("Appointment not found: " + id));

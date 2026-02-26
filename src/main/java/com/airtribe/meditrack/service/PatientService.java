@@ -22,6 +22,7 @@ public class PatientService implements Searchable<Patient> {
         this.store = store;
     }
 
+    // CRUD: create operation for Patient (public API used by UI and CSV loader)
     public Patient createPatient(String name, int age, String phone) {
         String id = idGenerator.nextPatientId();
         return createPatientWithId(id, name, age, phone);
@@ -40,6 +41,7 @@ public class PatientService implements Searchable<Patient> {
         return store.findById(id);
     }
 
+    // CRUD: read-all operation for Patient
     public List<Patient> getAllPatients() {
         return store.findAll();
     }
@@ -61,6 +63,7 @@ public class PatientService implements Searchable<Patient> {
                 .collect(Collectors.toList());
     }
 
+    // CRUD: delete operation for Patient
     public boolean deletePatient(String id) {
         return store.delete(id);
     }
